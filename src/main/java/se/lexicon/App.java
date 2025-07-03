@@ -10,15 +10,18 @@ public class App {
         // Simulate borrowing a book
         // Simulate returning a book
 
-        Person albin = new Person("Albin", "Löfmark");
-        Person jacob = new Person("Jacob", "Svensson");
+        Person person1 = new Person("Albin", "Löfmark");
+        Person person2 = new Person("Jacob", "Svensson");
 
-        System.out.println(albin.getPersonInformation());
-        System.out.println(jacob.getPersonInformation());
+        System.out.println(person1.getPersonInformation());
+        System.out.println(person2.getPersonInformation());
 
-        Book hans = new Book("Hans", "Anders Hansson", albin);
+        Book höns = new Book("Bok om 15 höns", "Gösta Hansson");
+        Book yoggi = new Book("Bok om yoggi", "Anders Ragnarok", person2);
 
-        System.out.println(hans.getBookInformation());
+
+        System.out.println(höns.getBookInformation());
+        System.out.println(yoggi.getBookInformation());
 
 
 

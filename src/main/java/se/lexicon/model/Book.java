@@ -20,6 +20,7 @@ public class Book {
         this.id = generateID();
         setTitle(title);
         setAuthor(author);
+        this.available = true;
     }
 
     public Book(String title, String author, Person borrower) {
@@ -27,6 +28,7 @@ public class Book {
         setTitle(title);
         setAuthor(author);
         this.borrower = borrower;
+        this.available = (borrower == null);
     }
 
     public String getId() {
@@ -39,6 +41,10 @@ public class Book {
 
     public String getAuthor() {
         return author;
+    }
+
+    public Person getBorrower() {
+        return borrower;
     }
 
     public void setTitle(String title) {
@@ -57,12 +63,15 @@ public class Book {
 
     public String getBookInformation() {
 
+        String borrowerInfo = (borrower != null) ? borrower.getPersonInformation(): "None";
+
         StringBuilder info = new StringBuilder();
 
         info.append("Book Info -> ID: ").append(id)
                 .append(", Title: ").append(title)
                 .append(", Author: ").append(author)
-                .append(", Borrower: ").append(borrower.getPersonInformation());
+                .append(", Borrower: ").append(borrowerInfo)
+                .append(", Available: ").append(available);
 
         return info.toString();
     }
@@ -70,6 +79,4 @@ public class Book {
     private static String generateID() {
         return UUID.randomUUID().toString().substring(0,8).toUpperCase();
     }
-
-
 }
