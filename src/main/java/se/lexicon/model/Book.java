@@ -27,7 +27,7 @@ public class Book {
         this.id = generateID();
         setTitle(title);
         setAuthor(author);
-        this.borrower = borrower;
+        setBorrower(borrower);
         this.available = (borrower == null);
     }
 
@@ -47,6 +47,10 @@ public class Book {
         return borrower;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
     public void setTitle(String title) {
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Title cannot be null or empty");
@@ -59,6 +63,15 @@ public class Book {
             throw new IllegalArgumentException("Author cannot be null or empty");
         }
         this.author = author;
+    }
+
+    public void setBorrower(Person borrower) {
+        if(borrower == null) {
+            available = true;
+        } else {
+            available = false;
+        }
+        this.borrower = borrower;
     }
 
     public String getBookInformation() {

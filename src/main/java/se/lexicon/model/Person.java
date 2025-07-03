@@ -47,6 +47,27 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public boolean loanBook(Book book) {
+        if(book.isAvailable()) {
+            book.setBorrower(this);
+            System.out.println("Book is available!");
+            return true;
+        }
+        System.out.println("Book is not available.");
+        return false;
+    }
+
+    public boolean returnBook(Book book) {
+        if(!book.isAvailable()) {
+            book.setBorrower(null);
+            System.out.println("Book has been returned.");
+            return true;
+        }
+        System.out.println("Book cannot be returned.");
+        return false;
+    }
+
+
     public String getPersonInformation() {
 
         StringBuilder info = new StringBuilder();
