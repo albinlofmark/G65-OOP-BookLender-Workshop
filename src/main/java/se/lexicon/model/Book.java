@@ -1,5 +1,6 @@
 package se.lexicon.model;
 
+import java.util.UUID;
 
 /**
  * This class represents a Book model with properties and methods
@@ -7,4 +8,68 @@ package se.lexicon.model;
  */
 public class Book {
     // todo: needs completion
+
+    private String id;
+    private String title;
+    private String author;
+    private boolean available;
+
+    private Person borrower;
+
+    public Book(String title, String author) {
+        this.id = generateID();
+        setTitle(title);
+        setAuthor(author);
+    }
+
+    public Book(String title, String author, Person borrower) {
+        this.id = generateID();
+        setTitle(title);
+        setAuthor(author);
+        this.borrower = borrower;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null or empty");
+        }
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        if (author == null || author.trim().isEmpty()) {
+            throw new IllegalArgumentException("Author cannot be null or empty");
+        }
+        this.author = author;
+    }
+
+    public String getBookInformation() {
+
+        StringBuilder info = new StringBuilder();
+
+        info.append("Book Info -> ID: ").append(id)
+                .append(", Title: ").append(title)
+                .append(", Author: ").append(author)
+                .append(", Borrower: ").append(borrower.getPersonInformation());
+
+        return info.toString();
+    }
+
+    private static String generateID() {
+        return UUID.randomUUID().toString().substring(0,8).toUpperCase();
+    }
+
+
 }
